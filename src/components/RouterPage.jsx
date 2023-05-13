@@ -5,19 +5,22 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { Link, Route, Switch, withRouter } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import HomePage from './HomePage';
 import BookPage from './BookPage';
 import LocalPage from './LocalPage';
 import LoginPage from './LoginPage';
+import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import JoinPage from './JoinPage';
 import MyPage from './MyPage';
 
 const RouterPage = ({history}) => {
     const onLogout = () => {
         sessionStorage.removeItem('email');
-        history.push('/');
+        history.push('/')
     }
+
+
     return (
         <>
             <Navbar bg="light" expand="lg">
@@ -36,16 +39,14 @@ const RouterPage = ({history}) => {
                         <div>
                             {sessionStorage.getItem('email') ?
                                 <>
-                                    <Link to="/mypage">
-                                        {sessionStorage.getItem('email')}
-                                    </Link>
-                                    <Link
-                                        onClick={onLogout} 
-                                        to="/logout">로그아웃</Link>
-                                </>
-                                :
-                                <Link to="/login">로그인</Link>
+                                <Link to="/mypage">{sessionStorage.getItem('email')}</Link>
+                                <Link to="/logout"
+                                    onClick={onLogout}>로그아웃</Link>
+
+                                </> 
+                                : <Link to="/login">로그인</Link>
                             }
+                            
                         </div>
                     </Navbar.Collapse>
                 </Container>
@@ -62,4 +63,4 @@ const RouterPage = ({history}) => {
     )
 }
 
-export default withRouter(RouterPage)
+export default withRouter(RouterPage);

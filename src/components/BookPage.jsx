@@ -13,12 +13,12 @@ const BookPage = () => {
     const getData = async() => {
         const url="https://dapi.kakao.com/v3/search/book?target=title";
         const config={
-            headers: {"Authorization": "KakaoAK b80880fbde422de3fd9b4a4e67c9bb54"},
+            headers: {"Authorization": "KakaoAK 9a721d5da920fc1e2ed879739c608759"},
             params: {query: query, page:page, size:8}
         }
         setLoading(true);
         const result= await axios.get(url, config);
-        console.log(result.data);
+        console.log(result);
         setList(result.data.documents);
         setIs_end(result.data.meta.is_end);
         setLoading(false);
